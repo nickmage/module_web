@@ -9,6 +9,28 @@ import com.utils.ActionException;
 
 public class TurnLeft implements Actions {
     private char[][] board = Board.getBoard();
+           /* {
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', 'T', '_', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', 'T', 'T', 'T', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', '_', '_', 'L', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', 'L', 'L', 'L', '_', '_', '_', '_'},
+                    {'_', '_', '_', '_', 'I', 'I', 'I', 'I', '_', '_', '_'},
+                    {'T', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z'},
+                    {'T', 'T', 'Z', 'L', 'Z', 'Z', 'Z', 'Z', 'Z', '_', '_'},
+                    {'T', 'L', 'L', 'L', '_', 'T', '_', 'O', 'O', 'O', 'O'},
+                    {'I', 'I', 'I', 'I', 'T', 'T', 'T', 'O', 'O', 'O', 'O'}
+            };*/
     private Figure figure;
 
     public TurnLeft(Figure figure) {
@@ -17,7 +39,7 @@ public class TurnLeft implements Actions {
 
     public static void main(String[] args) throws ActionException {
         TurnLeft left = new TurnLeft(new FigureFactory().getFigure('I'));
-        left.turnILeft();
+        //left.turnILeft();
     }
 
     public Figure performAction() throws ActionException {
@@ -40,7 +62,7 @@ public class TurnLeft implements Actions {
         }
     }
 
-    private void turnILeft() throws ActionException{
+    private void turnILeft() throws ActionException {
 
         //will be deleted
         GameService.placeFigure(board, figure);
@@ -75,10 +97,14 @@ public class TurnLeft implements Actions {
         return true;
     }
 
-
-
-
-
+    /*private void trimRows(char[][] board, int clearRow){
+        for (int i = clearRow; i > 0 ; i--) {
+            for (int j = 0; j < board[0].length; j++) {
+                board[i][j] = board[i - 1][j];
+                board[i - 1][j] = '_';
+            }
+        }
+    }*/
 
 
 

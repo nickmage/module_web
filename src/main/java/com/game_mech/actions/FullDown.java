@@ -43,6 +43,7 @@ public class FullDown implements Actions{
         }
         figure.getPivot().setX(figure.getPivot().getX() + edgeX);
         GameService.placeFigure(board, figure);
+        GameService.cleanRows(board);
         figure = new GetFigure().performAction();
     }
 

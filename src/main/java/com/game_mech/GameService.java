@@ -70,4 +70,33 @@ public class GameService {
         }
         return maxYIndex;
     }
+
+    public static void cleanRows(char[][] board){
+        for (int i = board.length - 1; i >= 0 ; i--) {
+            if (isFullRow(board, i)){
+                for (int j = 0; j < board[0].length; j++) {
+                    board[i][j] = '_';
+                }
+                trimRows(board, i);
+            }
+        }
+    }
+
+    private static void trimRows(char[][] board, int clearRow){
+        for (int i = clearRow; i > 0 ; i--) {
+                for (int j = 0; j < board[0].length; j++) {
+                    board[i][j] = board[i - 1][j];
+                    board[i - 1][j] = '_';
+                }
+        }
+    }
+
+    private static boolean isFullRow(char[][] board, int row){
+        for (int i = 0; i < board[0].length; i++) {
+            if (board[row][i] == '_'){
+                return false;
+            }
+        }
+        return true;
+    }
 }

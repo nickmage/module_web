@@ -26,7 +26,7 @@ public class Down implements Actions{
         List<Block> bottomBlocks = getBottomBlocks(figure);
         for (Block block: bottomBlocks) {
             if (block.getX() + 1 == board.length || board[block.getX() + 1][block.getY()] != '_'){
-
+                GameService.cleanRows(board);
                 figure = new GetFigure().performAction();
                 //System.out.println("EXC");
                 return;
