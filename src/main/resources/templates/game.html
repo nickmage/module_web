@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>Hello!</p>
+<button onclick="moveLeft()">Move left</button>
+<button onclick="moveRight()">Move right</button>
+<button onclick="turnLeft()">Turn left</button>
+<button onclick="turnRight()">Turn right</button>
+<button onclick="down()">Down</button>
+<button onclick="fullDown()">Full down</button>
+<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script>
+
+    function moveLeft() {
+        $.ajax({
+            type: "POST",
+            url: "/game",
+            data: "action=moveLeft",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("Invalid action");
+            }
+        });
+    }
+
+    function moveRight() {
+        $.ajax({
+            type: "POST",
+            url: "/game",
+            data: "action=moveRight",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("Invalid action");
+            }
+        });
+    }
+
+    function turnLeft() {
+        $.ajax({
+            type: "POST",
+            url: "/game",
+            data: "action=turnLeft",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("Invalid action");
+            }
+        });
+    }
+
+    function turnRight() {
+        $.ajax({
+            type: "POST",
+            url: "/game",
+            data: "action=turnRight",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("Invalid action");
+            }
+        });
+    }
+
+    function down() {
+        $.ajax({
+            type: "POST",
+            url: "/game",
+            data: "action=down",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("Invalid action");//console.log("Game Over");
+            }
+        });
+    }
+
+    function fullDown() {
+        $.ajax({
+            type: "POST",
+            url: "/game",
+            data: "action=fullDown",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("Game Over");
+            }
+        });
+    }
+
+    window.onload = $.ajax({
+        type: "POST",
+        url: "/game",
+        data: "action=getFigure",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function () {
+            console.log("Invalid action");
+        }
+    });
+
+</script>
+
+</body>
+</html>
