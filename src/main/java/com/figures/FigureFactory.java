@@ -52,7 +52,7 @@ public class FigureFactory {
     private Figure getZFigure(){
         Figure figure = new Figure();
         figure.setType('Z');
-        figure.setPivot(new Pivot(1,5));
+        figure.setPivot(new Pivot(0,5));
         List<Block> blocks = new ArrayList<>();
         blocks.add(new Block(0, 4));
         blocks.add(new Block(0,5));

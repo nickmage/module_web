@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Tetris</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -80,7 +80,7 @@
                 console.log(data);
             },
             error: function () {
-                console.log("Invalid action");//console.log("Game Over");
+                alert("Game Over"); // console.log("Invalid action");//console.log("Game Over");
             }
         });
     }
@@ -94,7 +94,7 @@
                 console.log(data);
             },
             error: function () {
-                console.log("Game Over");
+               alert("Game Over");
             }
         });
     }
@@ -111,11 +111,11 @@
         }
     });
 
-    window.onload = function (){
+    /*window.onload = //function (){
         setInterval(function() {
             down();
         }, 1500);
-    }
+    //}*/
 
 </script>
 

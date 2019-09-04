@@ -7,6 +7,9 @@ import com.figures.FigureFactory;
 import com.game_mech.GameService;
 import com.utils.ActionException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TurnLeft implements Actions {
     private char[][] board = Board.getBoard();
            /* {
@@ -39,7 +42,28 @@ public class TurnLeft implements Actions {
 
     public static void main(String[] args) throws ActionException {
         TurnLeft left = new TurnLeft(new FigureFactory().getFigure('I'));
-        //left.turnILeft();
+        //will be deleted
+        GameService.placeFigure(left.board, left.figure);
+        GameService.clear(left.board, left.figure);
+        for (Block block : left.figure.getBlocks()) {
+            block.setX(block.getX() + 3);
+        }
+        left.figure.getPivot().setX(left.figure.getPivot().getX() + 3);
+        GameService.placeFigure(left.board, left.figure);
+        //wbd
+
+        left.turnLeft();
+        GameService.placeFigure(left.board, left.figure);
+        left.turnLeft();
+        GameService.placeFigure(left.board, left.figure);
+        left.turnLeft();
+        GameService.placeFigure(left.board, left.figure);
+        left.turnLeft();
+        GameService.placeFigure(left.board, left.figure);
+        left.turnLeft();
+        GameService.placeFigure(left.board, left.figure);
+        left.turnLeft();
+        GameService.placeFigure(left.board, left.figure);
     }
 
     public Figure performAction() throws ActionException {
@@ -48,65 +72,23 @@ public class TurnLeft implements Actions {
     }
 
     private void turnLeft() throws ActionException {
-        switch (figure.getType()) {
-            case 'O':
-                return;
-            case 'I':
-                break;
-            case 'T':
-                break;
-            case 'Z':
-                break;
-            case 'L':
-                break;
+        if (figure.getType() != 'O'){
+            int pivotX = figure.getPivot().getX();
+            int pivotY = figure.getPivot().getY();
+            GameService.clear(board, figure);
+            List<Block> tempBlocks = new ArrayList<>();
+            for (Block block: figure.getBlocks()) {
+                int x = pivotY - block.getY() + pivotX;
+                int y = pivotY - pivotX + block.getX();
+                if (x < 0 || x >= board.length || y < 0 || y >= board[0].length){
+                    throw new ActionException();
+                }
+                tempBlocks.add(new Block(x,y));
+                //block.setX(x);
+                //block.setY(y);
+            }
+            figure.setBlocks(tempBlocks);
+            GameService.placeFigure(board, figure);
         }
     }
-
-    private void turnILeft() throws ActionException {
-
-        //will be deleted
-        GameService.placeFigure(board, figure);
-        //GameService.print(board);
-        GameService.clear(board, figure);
-        for (Block block : figure.getBlocks()) {
-            block.setX(block.getX() + 3);
-        }
-        figure.getPivot().setX(figure.getPivot().getX() + 3);
-        GameService.placeFigure(board, figure);
-        //wbd
-
-
-        System.out.println(isIHorizontal());
-
-        //System.out.println(figure.getPivot().getX() + " " + figure.getPivot().getY());
-
-
-    }
-
-    private boolean isIHorizontal(){
-        int pivotX = figure.getPivot().getX();
-        int pivotY = figure.getPivot().getY();
-        for (Block block : figure.getBlocks()) {
-            if (pivotY - 1 >= 0 && board[pivotX][pivotY - 1] != 'I') {
-                return false;
-            }
-            if (pivotY + 1 < board[0].length && board[pivotX][pivotY + 1] != 'I') {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /*private void trimRows(char[][] board, int clearRow){
-        for (int i = clearRow; i > 0 ; i--) {
-            for (int j = 0; j < board[0].length; j++) {
-                board[i][j] = board[i - 1][j];
-                board[i - 1][j] = '_';
-            }
-        }
-    }*/
-
-
-
-
 }
